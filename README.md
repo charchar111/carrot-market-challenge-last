@@ -12,7 +12,29 @@
 
 ### create-account(/create-account)
 
+#### 기능✅
+
 - form 데이터를 받아서 api 전달
 - api, user모델 레코드 생성
-  - bcrpyt로 패스워드 해싱 라이브러리 설정✅
+
+  - bcrpyt로 패스워드 해싱 라이브러리 설정
+    - 패스워드 해싱, 해싱 패스워드 확인
   - 모델 설정
+  - 쿼리 create 요청
+
+- 성공 시, log-in 리다이렉트
+
+#### 예외상황
+
+- 계정 생성 시, 중복 여부에 따라 api 실패 원인 발송
+
+### log-in(/log-in)
+
+- form 데이터를 받아서 api 전달
+- api, user모델 레코드 탐색
+  - 존재 확인 시, req.session.user.id 부여
+    - iron sesssion 설정
+
+#### 예외상황
+
+- 계정 탐색 시, 실패 여부에 따라 api 실패 원인 발송

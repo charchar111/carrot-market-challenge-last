@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import withHandler from "../../../lib/server/withHandler";
 import useBcrypts from "../../../lib/server/bcrypts";
+import db from "../../../lib/db";
 
 type ResponseData = {
   ok: boolean;
@@ -12,16 +13,16 @@ async function Handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
-  // const { email, username, password } = req.body;
+  const { email, username, password } = req.body;
 
-  // if (!(email && username && password))
-  //   return res.status(400).json({ ok: false });
-  // console.log(email, username, password);
-  // const Bcrypts = useBcrypts();
-  // const hashedPassword = await Bcrypts.hassing(password);
-  // console.log(hashedPassword);
+  if (!(email && username && password))
+    return res.status(400).json({ ok: false });
+
+  const Bcrypts = useBcrypts();
+  const hashedPassword = await Bcrypts.hassing(password);
   // const match = await Bcrypts.comparing(password, hashedPassword);
-  // console.log(match);
+
+  await db.user.create({ data: { email, username, password: hashedPassword } });
 
   return res.status(200).json({ ok: true });
 }
