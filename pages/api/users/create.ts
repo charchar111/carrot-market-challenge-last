@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import withHandler from "../../../lib/server/withHandler";
-import useBcrypts from "../../../lib/server/bcrypts";
-import db from "../../../lib/db";
+import withHandler from "@/lib/server/withHandler";
+import useBcrypts from "@/lib/server/bcrypts";
+import db from "@/lib/db";
 
 type ResponseData = {
   ok: boolean;

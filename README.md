@@ -28,12 +28,16 @@
 
 - 계정 생성 시, 중복 여부에 따라 api 실패 원인 발송
 
-### log-in(/log-in)
+### log-in(/log-in)✅
 
 - form 데이터를 받아서 api 전달
 - api, user모델 레코드 탐색
+
   - 존재 확인 시, req.session.user.id 부여
     - iron sesssion 설정
+    - 암호화된 쿠키 부여
+
+- 위 과정 성공 시, api 응답, 홈으로 리다이렉트
 
 #### 예외상황
 

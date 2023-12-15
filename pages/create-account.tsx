@@ -1,8 +1,8 @@
-import Input from "../components/Input";
-import FormButton from "../components/FormButton";
-import Layout from "../components/Layout";
+import Input from "@/components/Input";
+import FormButton from "@/components/FormButton";
+import Layout from "@/components/Layout";
 import { FieldErrors, useForm } from "react-hook-form";
-import useMutation from "../lib/client/useMutation";
+import useMutation from "@/lib/client/useMutation";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -27,7 +27,7 @@ export default function CreateAccount() {
   };
 
   useEffect(() => {
-    if (data?.ok) router.push("/");
+    if (data?.ok) router.push("/log-in");
   }, [data]);
   console.log(data, error, isLoading);
 
