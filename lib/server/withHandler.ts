@@ -21,8 +21,10 @@ export default function withHandler({
   ) {
     if (!req.method || !method.includes(req.method))
       return res.status(405).json({ ok: false });
+
     // 유저 인증
-    // if(isPrivated &&) return res.status(401).json({ ok: false });
+    if (isPrivated && !req.session.user)
+      return res.status(401).json({ ok: false });
 
     try {
       await handler(req, res);

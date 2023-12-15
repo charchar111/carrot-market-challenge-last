@@ -5,12 +5,15 @@
 
 ## 기능구현사항
 
-### Home(/)
+### 1.Home(/)
 
-- 로그인 여부 확인 API
+- 로그인 여부 확인 API✅
+
   - 비로그인 시 로그인 페이지 리다이렉트
 
-### create-account(/create-account)
+- 모든 트윗 목록 보여주기
+
+### 2. create-account(/create-account)
 
 #### 기능✅
 
@@ -28,7 +31,9 @@
 
 - 계정 생성 시, 중복 여부에 따라 api 실패 원인 발송
 
-### log-in(/log-in)✅
+### 3. log-in(/log-in)
+
+#### 기능✅
 
 - form 데이터를 받아서 api 전달
 - api, user모델 레코드 탐색
@@ -42,3 +47,31 @@
 #### 예외상황
 
 - 계정 탐색 시, 실패 여부에 따라 api 실패 원인 발송
+
+### 4. 트윗 업로드(/tweet/upload)✅
+
+- front
+
+  - form 유효성 검사 후, api 송신
+
+- model
+
+  - tweet 모델 생성
+
+- api
+
+  - 유효성 검사 후, 모델 레코드 생성
+
+- front
+  - 중복 요청 방지
+  - 성공 후, 홈으로 리다이렉트
+
+### 5. 트윗 상세보기(/tweet/:id)
+
+- front
+
+  - useSWR로 데이터 쿼리
+
+- api
+  - 쿼리스트링으로 아이디 추출, tweet 레코드에서 가져오기
+  - 프론트로 데이터 응답

@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import withHandler from "@/lib/server/withHandler";
 import useBcrypts from "@/lib/server/bcrypts";
 import db from "@/lib/db";
+import withAPISession from "@/lib/server/withAPISession";
 
 type ResponseData = {
   ok: boolean;
@@ -27,8 +28,10 @@ async function Handler(
   return res.status(200).json({ ok: true });
 }
 
-export default withHandler({
-  method: ["POST"],
-  handler: Handler,
-  isPrivated: false,
-});
+export default withAPISession(
+  withHandler({
+    method: ["POST"],
+    handler: Handler,
+    isPrivated: false,
+  })
+);

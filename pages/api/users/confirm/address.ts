@@ -39,6 +39,7 @@ async function Handler(
     });
   console.log(user);
   req.session.user = { id: user.id };
+  await req.session.save();
 
   return res.status(200).json({ ok: true });
 }
