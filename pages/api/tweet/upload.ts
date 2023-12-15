@@ -14,12 +14,16 @@ async function Handler(
   res: NextApiResponse<ResponseData>
 ) {
   //   console.log(req.body);
-  const { title, content } = req.body;
+  const { content } = req.body;
 
-  if (!(title && content)) return res.status(400).json({ ok: false });
+  if (!content) return res.status(400).json({ ok: false });
 
   await db.tweet.create({
-    data: { title, content, user: { connect: { id: req.session.user?.id } } },
+    data: {
+      image: "",
+      content,
+      user: { connect: { id: req.session.user?.id } },
+    },
   });
 
   return res.status(200).json({ ok: true });

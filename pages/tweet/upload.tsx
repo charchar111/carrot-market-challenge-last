@@ -7,15 +7,13 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 interface FormAccount {
-  title: string;
   content: string;
 }
 
 export default function TweetUpload() {
   const router = useRouter();
   const { register, handleSubmit } = useForm<FormAccount>();
-  const [mutation, { data, error, isLoading }] =
-    useMutation("/api/tweet/upload");
+  const [mutation, { data, isLoading }] = useMutation("/api/tweet/upload");
   const onValid = function (formData: FormAccount) {
     // console.log(formData);
     if (isLoading) return;
@@ -42,10 +40,6 @@ export default function TweetUpload() {
           action=""
           onSubmit={handleSubmit(onValid, onInvalid)}
         >
-          <Input
-            label="title"
-            register={{ ...register("title", { required: true }) }}
-          />
           <Input
             label="text"
             register={{ ...register("content", { required: true }) }}

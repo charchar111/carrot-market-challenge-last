@@ -23,7 +23,15 @@ async function Handler(
   const hashedPassword = await Bcrypts.hassing(password);
   // const match = await Bcrypts.comparing(password, hashedPassword);
 
-  await db.user.create({ data: { email, username, password: hashedPassword } });
+  await db.user.create({
+    data: {
+      email,
+      username,
+      password: hashedPassword,
+      name: username,
+      avatar: "",
+    },
+  });
 
   return res.status(200).json({ ok: true });
 }

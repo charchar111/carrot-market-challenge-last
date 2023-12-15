@@ -19,7 +19,7 @@ async function Handler(
     where: { id: user?.id },
     select: { id: true },
   });
-  console.log("existUser", existUser);
+  // console.log("existUser", existUser);
   if (!existUser) return res.status(404).json({ ok: false });
   return res.status(200).json({ ok: true });
 }

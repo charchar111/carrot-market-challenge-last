@@ -16,6 +16,10 @@ async function Handler(
 ) {
   const tweets = await db.tweet.findMany({
     where: {},
+    include: {
+      user: { select: { username: true, name: true, avatar: true } },
+      _count: { select: { Favorites: true } },
+    },
   });
 
   return res.status(200).json({ ok: true, tweets });

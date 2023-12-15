@@ -2,7 +2,7 @@ import FootLink from "./Link";
 
 export default function Footer() {
   return (
-    <footer className="mx-auto fixed w-full max-w-2xl left-0 right-0 bottom-5 p-5">
+    <footer className="backdrop-blur-sm  mx-auto fixed w-full max-w-2xl left-0 right-0 bottom-0 p-5 bg-[rgba(255,255,255,0.8)] border-2  ">
       <nav>
         <ul className="flex justify-around font-semibold text-gray-600 ">
           <li>
