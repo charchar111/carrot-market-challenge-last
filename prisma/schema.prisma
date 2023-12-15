@@ -11,23 +11,39 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  username  String?
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  username  String?    @unique
+  name      String
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  avatar    String
   Tweets    Tweet[]
+  Favorites Favorite[]
 }
 
 model Tweet {
-  id        Int      @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   title     String
   content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
+  Favorites Favorite[]
 
   @@index([userId])
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  tweet     Tweet    @relation(fields: [tweetId], references: [id])
+  tweetId   Int
+
+  @@index([userId, tweetId])
 }
