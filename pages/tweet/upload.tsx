@@ -15,7 +15,7 @@ export default function TweetUpload() {
   const { register, handleSubmit } = useForm<FormAccount>();
   const [mutation, { data, isLoading }] = useMutation("/api/tweet/upload");
   const onValid = function (formData: FormAccount) {
-    // console.log(formData);
+    console.log(formData);
     if (isLoading) return;
     if (data) return;
     // 중복 발송 방지
@@ -40,10 +40,15 @@ export default function TweetUpload() {
           action=""
           onSubmit={handleSubmit(onValid, onInvalid)}
         >
-          <Input
+          <textarea
+            {...register("content", { required: true })}
+            className="border-2 resize-none mb-6 rounded-md"
+            rows={10}
+          ></textarea>
+          {/* <Input
             label="text"
             register={{ ...register("content", { required: true }) }}
-          />
+          /> */}
           <FormButton text="Tweet" />
         </form>
       </div>
